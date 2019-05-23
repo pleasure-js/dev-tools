@@ -6,10 +6,10 @@
   "dependencies": {
     "ava": "^1.4.1",
     "chalk": "^2.4.2",
+    "pleasure-api": "keepwondering/pleasure-api#v1-beta",
     "pleasure-api-client": "keepwondering/pleasure-api-client#v1-beta"
   },
   "peerDependencies": {
-    "pleasure": "keepwondering/pleasure#v1-beta",
-    "pleasure-api": "keepwondering/pleasure-api#v1-beta"
+    "pleasure": "keepwondering/pleasure#v1-beta"
   }
 }
