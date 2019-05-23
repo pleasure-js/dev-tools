@@ -2,6 +2,15 @@ const test = require('ava')
 const { fork } = require('child_process')
 const chalk = require('chalk')
 
+const serverLog = (...lines) => {
+  const date = new Date().toTimeString()
+  const headline = `[api-server :: ${ date }]`
+  lines.forEach(line => {
+    console.log(chalk[module.exports.config.infoColor](headline))
+    console.log(chalk[module.exports.config.contentColor](line))
+  })
+}
+
 module.exports = function (dummyProjectPath) {
   let webServer
 
@@ -23,12 +32,13 @@ module.exports = function (dummyProjectPath) {
           return
         }
 
-        console.log(chalk.grey(`[api::server]: ${data.toString()}`))
+        serverLog(data.toString())
       })
 
       webServer.on('message', m => {
         if (m === 'ready') {
           clearTimeout(c)
+          serverLog(`started`)
           resolve()
         }
       })
@@ -38,4 +48,8 @@ module.exports = function (dummyProjectPath) {
   test.after.always(async t => {
     webServer && webServer.kill()
   })
+}
+module.exports.config = {
+  infoColor: 'grey',
+  contentColor: 'grey'
 }
