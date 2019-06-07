@@ -1,6 +1,7 @@
 const test = require('ava')
 const { fork } = require('child_process')
 const chalk = require('chalk')
+const path = require('path')
 
 const serverLog = (...lines) => {
   const date = new Date().toTimeString()
@@ -11,6 +12,15 @@ const serverLog = (...lines) => {
   })
 }
 
+const serverError = (...lines) => {
+  const date = new Date().toTimeString()
+  const headline = `[api-server :: ${ date }]`
+  lines.forEach(line => {
+    console.log(chalk[module.exports.config.errorColor](headline))
+    console.log(chalk[module.exports.config.errorContentColor](line))
+  })
+}
+
 module.exports = function (dummyProjectPath) {
   let webServer
 
@@ -18,11 +28,13 @@ module.exports = function (dummyProjectPath) {
     // Fork dummy project (web server)
     await new Promise((resolve, reject) => {
       const c = setTimeout(reject.bind(null, `Web server did not answer`), 3000) // wait 1000 ms for the server to start
+      console.log({ dummyProjectPath })
 
       webServer = fork(require.resolve(dummyProjectPath), [], {
         cwd: dummyProjectPath,
         silent: true,
         env: {
+          PLEASURE_ROOT: dummyProjectPath,
           NODE_ENV: 'test',
         }
       })
@@ -35,8 +47,16 @@ module.exports = function (dummyProjectPath) {
         serverLog(data.toString())
       })
 
+      webServer.stderr.on('data', (data) => {
+        if (process.env.API_ERROR !== 'true') {
+          return
+        }
+
+        serverError(data.toString())
+      })
+
       webServer.on('message', m => {
-        if (m === 'ready') {
+        if (m === 'pleasure-ready') {
           clearTimeout(c)
           serverLog(`started`)
           resolve()
@@ -51,5 +71,7 @@ module.exports = function (dummyProjectPath) {
 }
 module.exports.config = {
   infoColor: 'grey',
-  contentColor: 'grey'
+  contentColor: 'grey',
+  errorColor: 'red',
+  errorContentColor: 'white'
 }
