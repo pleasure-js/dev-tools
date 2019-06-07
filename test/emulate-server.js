@@ -28,7 +28,6 @@ module.exports = function (dummyProjectPath) {
     // Fork dummy project (web server)
     await new Promise((resolve, reject) => {
       const c = setTimeout(reject.bind(null, `Web server did not answer`), 3000) // wait 1000 ms for the server to start
-      console.log({ dummyProjectPath })
 
       webServer = fork(require.resolve(dummyProjectPath), [], {
         cwd: dummyProjectPath,
@@ -58,7 +57,6 @@ module.exports = function (dummyProjectPath) {
       webServer.on('message', m => {
         if (m === 'pleasure-ready') {
           clearTimeout(c)
-          serverLog(`started`)
           resolve()
         }
       })
