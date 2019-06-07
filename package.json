@@ -5,7 +5,9 @@
   "license": "MIT",
   "dependencies": {
     "ava": "^1.4.1",
-    "chalk": "^2.4.2",
+    "chalk": "^2.4.2"
+  },
+  "peerDependencies": {
     "pleasure-api": "keepwondering/pleasure-api#v1-beta",
     "pleasure-api-client": "keepwondering/pleasure-api-client#v1-beta"
   }
