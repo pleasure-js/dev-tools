@@ -10,7 +10,7 @@ pleasureApi({
 
 test.beforeEach(async t => {
   // clean db
-  await utils.db.emptyModels()
+  await utils.emptyModels()
 
   // user
   const { entities: { user: User, product: Product } } = await getEntities()
