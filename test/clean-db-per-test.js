@@ -1,12 +1,14 @@
 const test = require('ava')
 const { pleasureApi, utils, getEntities } = require('pleasure-api') // pleasure
 
+/*
 const server = require('http').createServer()
 // initializing api server in this thread
 pleasureApi({
   prefix: '/api',
   debug: true
 }, server)
+*/
 
 test.beforeEach(async t => {
   // clean db

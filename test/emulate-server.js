@@ -23,6 +23,7 @@ const serverError = (...lines) => {
 
 module.exports = function (dummyProjectPath) {
   let webServer
+  process.env.PLEASURE_ROOT = dummyProjectPath
 
   test.before(async t => {
     // Fork dummy project (web server)
