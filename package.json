@@ -1,5 +1,5 @@
 {
-  "name": "pleasure-core-dev-tools",
+  "name": "@pleasure-js/dev-tools",
   "version": "1.0.0-beta",
   "main": "index.js",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "chalk": "^2.4.2"
   },
   "peerDependencies": {
-    "pleasure-api": "keepwondering/pleasure-api#v1-beta",
-    "pleasure-api-client": "keepwondering/pleasure-api-client#v1-beta"
+    "@pleasure-js/api": "git@github.com:pleasure-js/api.git#v1-beta",
+    "@pleasure-js/api-client": "git@github.com:pleasure-js/api-client.git#v1-beta"
   }
 }

@@ -1,8 +1,8 @@
-const { PleasureApiClient } = require('pleasure-api-client')
+const { ApiClient } = require('@pleasure-js/api-client')
 
 module.exports = {
   adminLogin () {
-    const pleasureClient = PleasureApiClient.instance()
+    const pleasureClient = ApiClient.instance()
 
     return pleasureClient.login({
       email: 'tin@devtin.io',

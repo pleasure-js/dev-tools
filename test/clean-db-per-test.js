@@ -1,5 +1,5 @@
 const test = require('ava')
-const { pleasureApi, utils, getEntities } = require('pleasure-api') // pleasure
+const { pleasureApi, utils, getEntities } = require('@pleasure-js/api') // pleasure
 
 /*
 const server = require('http').createServer()
