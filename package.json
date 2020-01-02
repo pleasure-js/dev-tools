@@ -8,7 +8,7 @@
     "chalk": "^2.4.2"
   },
   "peerDependencies": {
-    "@pleasure-js/api": "git@github.com:pleasure-js/api.git#v1-beta",
-    "@pleasure-js/api-client": "git@github.com:pleasure-js/api-client.git#v1-beta"
+    "@pleasure-js/api": "git+ssh://git@github.com:pleasure-js/api.git#v1-beta",
+    "@pleasure-js/api-client": "git+ssh://git@github.com:pleasure-js/api-client.git#v1-beta"
   }
 }
